@@ -1,0 +1,53 @@
+@use 'mixins' as *;
+
+// View from Seat demo, BEM block: .seat-map
+.seat-demo {
+  display: grid; gap: 2rem; margin-top: 2.4rem; align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+  @include up(md) { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+}
+
+.seat-map {
+  &__stage {
+    max-width: 80%; margin: 0 auto 1.2rem; padding-bottom: .4rem; text-align: center;
+    font-size: .85rem; font-weight: 600; color: var(--muted);
+    border-bottom: 6px solid var(--stage);
+  }
+  &__rows { display: grid; gap: .35rem; overflow-x: auto; padding-bottom: .3rem; }
+  &__row { display: flex; align-items: center; justify-content: center; gap: .3rem; @include down(sm) { gap: .18rem; } }
+  &__label {
+    flex: none; width: 1.4rem; text-align: center; font-size: .8rem; font-weight: 600; color: var(--muted);
+    @include down(sm) { width: 1rem; }
+  }
+  &__aisle { flex: none; width: .9rem; @include down(sm) { width: .5rem; } }
+  &__hint { margin: 1rem 0 0; font-size: .9rem; color: var(--muted); text-align: center; }
+}
+
+.seat {
+  $size: 1.75rem;
+  flex: none; width: $size; height: $size; padding: 0; border: 0; cursor: pointer;
+  border-radius: 6px 6px 3px 3px; background: var(--seat); color: #fff;
+  font-family: inherit; font-size: .62rem; font-weight: 600; line-height: 1;
+  opacity: .85; transition: transform .15s ease, background-color .15s ease;
+  @include focus-ring;
+
+  &:hover { opacity: 1; transform: translateY(-2px); }
+  &--restricted { background: repeating-linear-gradient(135deg, var(--seat) 0 4px, color-mix(in srgb, var(--seat) 70%, #fff) 4px 8px); }
+  &--selected { background: var(--red); color: var(--on-red); opacity: 1; }
+
+  @include down(sm) { width: $size * .75; height: $size * .75; font-size: .5rem; }
+}
+
+.seat-legend {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.2rem; margin: .9rem 0 0;
+  padding: 0; list-style: none; font-size: .85rem; color: var(--muted);
+  li { display: inline-flex; align-items: center; gap: .4rem; }
+  .seat { width: 1rem; height: 1rem; cursor: default; &:hover { transform: none; } }
+}
+
+.sightline {
+  &__title { margin: 0 0 .2rem; font-size: 1.25rem; }
+  &__note { margin: .2rem 0 0; color: var(--muted); font-size: .95rem; min-height: 3.1em; }
+  svg { display: block; width: 100%; height: auto; margin-top: 1rem; border-radius: 10px; background: #101215; }
+  polygon, rect, ellipse, circle { transition: all .35s ease; }
+}

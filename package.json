@@ -1,0 +1,14 @@
+{
+  "name": "abishek-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio site for Abishek Meenatchisundaram, Front End Developer",
+  "private": true,
+  "scripts": {
+    "build": "sass --no-source-map --style=compressed scss/main.scss css/main.css",
+    "watch": "sass --watch --no-source-map scss/main.scss css/main.css",
+    "start": "npx --yes serve ."
+  },
+  "devDependencies": {
+    "sass": "1.77.8"
+  }
+}

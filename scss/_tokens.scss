@@ -1,0 +1,23 @@
+// Design tokens: one map per theme, output as CSS custom properties
+$themes: (
+  "light": (
+    "bg": #F4F5F6, "surface": #FFFFFF, "ink": #1E2126, "muted": #555B63,
+    "line": #D9DCE0, "seat": #3A3F46, "red": #C8102E, "on-red": #FFFFFF,
+    "stage": #E6E8EB, "focus": #1A5FD0, "code-bg": #1B1E23,
+  ),
+  "dark": (
+    "bg": #15171A, "surface": #1E2125, "ink": #ECEEF0, "muted": #A8AEB6,
+    "line": #33373D, "seat": #4A5058, "red": #FF4D5A, "on-red": #15171A,
+    "stage": #2A2E33, "focus": #7FB0FF, "code-bg": #0F1114,
+  ),
+);
+
+$genres: (
+  "theatre": #C8102E,
+  "music": #1A5FD0,
+  "dance": #8A3FD1,
+  "family": #1F8A4C,
+);
+
+$radius: ("sm": 6px, "md": 14px, "pill": 999px);
+$breakpoints: ("sm": 520px, "md": 860px);

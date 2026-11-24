@@ -1,0 +1,83 @@
+@use 'sass:map';
+@use 'sass:color';
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+// What's On filter demo with ticket-stub cards
+.whats-on {
+  margin-top: 2.4rem;
+
+  &__filters {
+    display: grid; gap: 1rem; align-items: end;
+    grid-template-columns: minmax(0, 1fr);
+    @include up(md) { grid-template-columns: minmax(0, 1.2fr) auto auto; }
+  }
+  &__field { min-width: 0; }
+  &__field label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .35rem; }
+  &__input, &__select {
+    @include hit-area;
+    display: block; width: 100%; max-width: 100%; padding: 0 .9rem; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); color: var(--ink); font: inherit;
+    @include focus-ring;
+  }
+  &__genres { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0 0; padding: 0; border: 0; }
+  &__toggle { display: inline-flex; align-items: center; gap: .55rem; min-height: 44px; font-weight: 500; cursor: pointer; }
+  &__count { margin: 1.4rem 0 .8rem; color: var(--muted); font-size: .95rem; }
+  &__grid {
+    display: grid; gap: 1rem; padding: 0; margin: 0; list-style: none;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+  &__empty { padding: 2rem; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: radius(md); }
+}
+
+.genre-chip {
+  @include hit-area(40px);
+  padding: 0 1rem; border-radius: radius(pill); border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); font: inherit; font-weight: 500; cursor: pointer;
+  @include focus-ring;
+
+  // One modifier per genre, generated from the $genres map
+  @each $genre, $colour in $genres {
+    &--#{$genre}[aria-pressed="true"] {
+      background: $colour; border-color: $colour; color: #fff;
+    }
+  }
+}
+
+.ticket {
+  $notch: 12px;
+  position: relative; display: grid; grid-template-columns: 1fr auto;
+  background: var(--surface); border: 1px solid var(--line); border-radius: radius(md);
+  // Punch two semicircle notches where the stub tears off
+  mask:
+    radial-gradient(circle $notch at calc(100% - 5.5rem) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle $notch at calc(100% - 5.5rem) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+
+  &__body { padding: 1.1rem 1.2rem; min-width: 0; }
+  &__genre { display: inline-block; font-size: .8rem; font-weight: 700; margin-bottom: .3rem; }
+  &__title { margin: 0; font-size: 1.15rem; line-height: 1.25; }
+  &__venue { margin: .25rem 0 0; color: var(--muted); font-size: .92rem; }
+  &__stub {
+    width: 5.5rem; display: grid; place-content: center; text-align: center; padding: .8rem .4rem;
+    border-left: 2px dashed var(--line); font-weight: 700; line-height: 1.1;
+    small { display: block; font-weight: 500; font-size: .75rem; color: var(--muted); margin-top: .2rem; }
+  }
+  &__day { font-size: 1.6rem; font-stretch: 112%; }
+  &__status { margin-top: .5rem; font-size: .8rem; font-weight: 600; }
+
+  @each $genre, $colour in $genres {
+    &--#{$genre} .ticket__genre { color: $colour; }
+    :root[data-theme="dark"] &--#{$genre} .ticket__genre { color: color.adjust($colour, $lightness: 22%); }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) &--#{$genre} .ticket__genre { color: color.adjust($colour, $lightness: 22%); }
+    }
+  }
+
+  &--sold-out { .ticket__title, .ticket__stub { opacity: .55; } }
+}
+
+// Vue <TransitionGroup name="ticket">
+.ticket-enter-active, .ticket-leave-active { transition: opacity .25s ease, transform .25s ease; }
+.ticket-enter-from, .ticket-leave-to { opacity: 0; transform: scale(.97); }
+.ticket-leave-active { position: absolute; visibility: hidden; }
+.ticket-move { transition: transform .3s ease; }

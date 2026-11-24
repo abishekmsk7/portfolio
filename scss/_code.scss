@@ -1,0 +1,40 @@
+@use 'mixins' as *;
+
+// Source viewer: tabs + Prism-highlighted code
+.source {
+  margin-top: 1.6rem;
+  border: 1px solid var(--line); border-radius: radius(md); overflow: hidden; background: var(--code-bg);
+
+  &__summary {
+    @include hit-area;
+    display: flex; align-items: center; gap: .6rem; padding: 0 1.2rem; cursor: pointer;
+    background: var(--surface); font-weight: 600; list-style: none;
+    @include focus-ring;
+    &::-webkit-details-marker { display: none; }
+    &::before { content: "+"; font-size: 1.2rem; width: 1rem; color: var(--red); }
+  }
+  &[open] &__summary::before { content: "−"; }
+
+  &__tabs { display: flex; flex-wrap: wrap; gap: .25rem; padding: .6rem .8rem 0; border-bottom: 1px solid #2D3239; }
+  &__tab {
+    min-height: 40px; padding: 0 .9rem; border: 0; border-radius: 8px 8px 0 0; cursor: pointer;
+    background: transparent; color: #A9B1BB; font: inherit; font-size: .9rem; font-weight: 500;
+    @include focus-ring;
+    &[aria-selected="true"] { background: #2A2F36; color: #fff; }
+  }
+  pre {
+    margin: 0; padding: 1.2rem; max-height: 28rem; overflow: auto;
+    font: .85rem/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E6E8EB; tab-size: 2;
+  }
+}
+
+// Prism token colours (inline, so no external stylesheet is needed)
+.token {
+  &.comment { color: #7D8794; font-style: italic; }
+  &.keyword, &.atrule, &.important { color: #FF7A85; }
+  &.string, &.attr-value { color: #9FD99A; }
+  &.function, &.selector { color: #7FB0FF; }
+  &.property, &.attr-name { color: #F5C26B; }
+  &.number, &.boolean, &.variable { color: #D7A6FF; }
+  &.tag, &.punctuation { color: #A9B1BB; }
+}

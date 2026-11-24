@@ -1,0 +1,164 @@
+@use 'mixins' as *;
+
+// Header
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; z-index: 10;
+  height: env(safe-area-inset-top, 0px); background: var(--bg);
+}
+
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+
+  &__inner {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0 1rem; min-height: 64px; padding-block: .4rem;
+  }
+  &__mark {
+    font-weight: 800; font-stretch: 112%; text-decoration: none; font-size: 1.05rem;
+    display: inline-flex; align-items: center; gap: .55rem;
+    &::before {
+      content: ""; width: .8rem; height: .8rem; background: var(--red);
+      border-radius: 4px 4px 2px 2px;
+    }
+  }
+  &__nav ul { display: flex; flex-wrap: wrap; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+  &__nav a {
+    @include hit-area; display: inline-flex; align-items: center; padding: 0 .7rem;
+    text-decoration: none; color: var(--muted); font-weight: 500;
+    &:hover { color: var(--ink); }
+  }
+}
+
+// Hero
+.hero {
+  padding: 4rem 0 4.5rem;
+
+  &__grid {
+    display: grid; gap: 3rem; align-items: center;
+    grid-template-columns: minmax(0, 1fr);
+    @include up(md) { grid-template-columns: minmax(0, 1.35fr) minmax(0, .85fr); gap: 3.5rem; }
+  }
+  &__name {
+    margin: 0; font-weight: 800; font-stretch: 118%; line-height: 1;
+    font-size: clamp(2rem, 5vw, 4.3rem); letter-spacing: -.025em; overflow-wrap: anywhere;
+    span { display: block; }
+  }
+  &__role { margin: 1.3rem 0 0; font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 600; }
+  &__intro { margin: .8rem 0 0; max-width: 34rem; color: var(--muted); font-size: 1.125rem; }
+  &__status {
+    display: flex; align-items: baseline; gap: .6rem; margin-top: 1.5rem; font-weight: 500;
+    &::before {
+      content: ""; flex: none; width: .7rem; height: .7rem; background: var(--red);
+      border-radius: 3px 3px 1px 1px;
+    }
+  }
+  &__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.8rem; }
+  &__stack { display: flex; flex-wrap: wrap; gap: .4rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+}
+
+// Photo framed by a seat grid, generated with a Sass loop
+.portrait {
+  position: relative; margin: 0; max-width: 24rem;
+  @include down(md) { max-width: 22rem; }
+
+  img {
+    position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
+    border-radius: radius(md);
+  }
+  &__seats {
+    position: absolute; z-index: 0; right: -1.2rem; bottom: -1.2rem;
+    display: grid; grid-template-columns: repeat(6, 1.1rem); gap: .35rem;
+    span {
+      width: 1.1rem; height: 1.1rem; border-radius: 4px 4px 2px 2px; background: var(--seat);
+      opacity: .22;
+      animation: seat-in .5s ease-out backwards;
+    }
+    // Stagger each seat's entrance and light a few in red
+    @for $i from 1 through 24 {
+      span:nth-child(#{$i}) { animation-delay: #{$i * 30}ms; }
+    }
+    @each $n in 5, 11, 16, 22 {
+      span:nth-child(#{$n}) { background: var(--red); opacity: .9; }
+    }
+  }
+}
+@keyframes seat-in { from { transform: translateY(6px); opacity: 0; } }
+
+.btn {
+  @include hit-area(48px);
+  display: inline-flex; align-items: center; justify-content: center; padding: 0 1.3rem;
+  border-radius: radius(pill); border: 2px solid var(--ink);
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; background: none; color: var(--ink);
+
+  &--primary {
+    background: var(--red); border-color: var(--red); color: var(--on-red);
+    &:hover { filter: brightness(1.08); }
+  }
+  &--ghost:hover { background: var(--ink); color: var(--bg); }
+}
+
+.chip {
+  border: 1px solid var(--line); background: var(--surface); border-radius: radius(pill);
+  padding: .25rem .75rem; font-size: .92rem;
+}
+
+// Sections
+.section {
+  padding: 4.5rem 0; border-top: 1px solid var(--line);
+
+  &__title {
+    margin: 0 0 .6rem; font-weight: 800; font-stretch: 112%; line-height: 1.08;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: -.015em;
+  }
+  &__lede { margin: 0; max-width: 42rem; color: var(--muted); }
+}
+
+.panel {
+  background: var(--surface); border: 1px solid var(--line); border-radius: radius(md);
+  padding: 1.4rem; min-width: 0;
+  @include down(sm) { padding: 1rem; }
+}
+
+.points {
+  margin: 1.6rem 0 0; padding: 0; list-style: none; display: grid; gap: .7rem;
+  li {
+    position: relative; padding-left: 1.1rem;
+    &::before {
+      content: ""; position: absolute; left: 0; top: .62em; width: .45rem; height: .45rem;
+      border-radius: 2px; background: var(--red);
+    }
+  }
+}
+
+// Experience
+.job {
+  display: grid; gap: .6rem;
+  @include up(md) { grid-template-columns: 14rem 1fr; gap: 2rem; }
+  & + & { margin-top: 2.6rem; }
+
+  &__meta { color: var(--muted); font-size: .95rem; strong { display: block; color: var(--ink); font-size: 1.1rem; } }
+  &__role { margin: 0 0 .6rem; font-size: 1.2rem; }
+  ul { margin: 0; padding-left: 1.1rem; }
+  li { margin: .35rem 0; max-width: 46rem; }
+}
+
+.skills {
+  display: grid; gap: 2rem 2.5rem; margin-top: 2.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  h3 { margin: 0 0 .6rem; font-size: 1rem; }
+  ul { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+}
+
+.contact {
+  &__grid {
+    display: grid; gap: 2rem; align-items: end;
+    @include up(md) { grid-template-columns: 1.2fr 1fr; }
+  }
+  &__title { font-size: clamp(2rem, 4.6vw, 3.4rem); }
+  &__links { display: grid; gap: .6rem; justify-items: start; a { font-weight: 600; font-size: 1.15rem; text-underline-offset: .2em; } }
+}
+
+.site-footer { padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }

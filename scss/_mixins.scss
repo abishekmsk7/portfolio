@@ -1,0 +1,35 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+// Print every token of a theme as a custom property
+@mixin theme($name) {
+  @each $token, $value in map.get($themes, $name) {
+    --#{$token}: #{$value};
+  }
+  color-scheme: $name;
+}
+
+// Mobile-first breakpoints: @include up(md) { ... }
+@mixin up($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) { @content; }
+}
+@mixin down($bp) {
+  @media (max-width: map.get($breakpoints, $bp) - 0.02px) { @content; }
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+}
+
+// A touch target that is never smaller than 44px
+@mixin hit-area($size: 44px) {
+  min-height: $size;
+  min-width: $size;
+}
+
+@function radius($key) {
+  @return map.get($radius, $key);
+}

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Abishek Meenatchisundaram – Front End Developer</title>
+<meta name="description" content="Front End Developer specialising in Craft CMS, Vue.js and SCSS websites for theatres, concert halls and arts venues.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="site-header__mark" href="#top">Abishek M</a>
+    <nav class="site-header__nav" aria-label="Main">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <h1 class="hero__name"><span>Abishek</span><span>Meenatchisundaram</span></h1>
+        <p class="hero__role">Front End Developer</p>
+        <p class="hero__intro">I build accessible, fast websites with Craft CMS, Twig, SCSS and Vue.js, mostly for theatres, concert halls and arts venues, where the website is how people buy their tickets.</p>
+        <p class="hero__status">Based in Leicester, open to new front-end roles in the UK</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="mailto:abishekmsk7@gmail.com">Email me</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/abishek-meenatchisundaram-812330139/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <ul class="hero__stack" aria-label="Main skills">
+          <li class="chip">Craft CMS</li><li class="chip">Twig</li><li class="chip">Vue.js</li><li class="chip">SCSS</li><li class="chip">HTML</li><li class="chip">Accessibility</li>
+        </ul>
+      </div>
+      <figure class="portrait">
+        <img src="assets/portrait.jpg" width="720" height="900" alt="Abishek standing in front of tiered theatre seating">
+        <div class="portrait__seats" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <h2 class="section__title">View from Seat</h2>
+      <p class="section__lede">A feature I built on top of Tessitura seat selection: before booking, customers can see the sightline from the seat they’ve picked. This simplified version is a Vue component, and the view redraws from the seat’s row and position.</p>
+      <div id="seat-app"><noscript><p>Turn on JavaScript to try the seat map.</p></noscript></div>
+      <ul class="points">
+        <li>Built on top of Tessitura TNEW seat selection, as part of the venue’s booking journey</li>
+        <li>Helps customers choose with confidence, especially for seats with restricted or angled views</li>
+      </ul>
+      <details class="source">
+        <summary class="source__summary">View the Vue and SCSS source</summary>
+        <div data-source="seat"></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section__title">What’s On filters</h2>
+      <p class="section__lede">Event listings are at the heart of every venue site I work on. This sample programme shows the kind of filtering I build with Vue: search, genres, months and hiding sold-out shows, all updating instantly. The ticket cards are styled in SCSS, with genre colours generated from a Sass map.</p>
+      <div id="whats-on-app"><noscript><p>Turn on JavaScript to try the filters.</p></noscript></div>
+      <details class="source">
+        <summary class="source__summary">View the Vue and SCSS source</summary>
+        <div data-source="whatson"></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="wrap">
+      <h2 class="section__title">Experience</h2>
+      <div style="margin-top:2.2rem">
+        <article class="job">
+          <div class="job__meta"><strong>Supercool</strong>Remote<br>Jan 2025 – present</div>
+          <div>
+            <h3 class="job__role">Front End Developer</h3>
+            <ul>
+              <li>Develop and maintain Craft CMS websites for theatres, concert halls and arts venues</li>
+              <li>Build Twig templates with reusable partials, macros and flexible Matrix content blocks, so editors can create rich pages without developer help</li>
+              <li>Write component-based SCSS with BEM, using Grid, Flexbox, fluid type and container queries for fully responsive layouts</li>
+              <li>Write semantic, accessible HTML to WCAG standards, favouring native patterns over extra JavaScript</li>
+              <li>Build Vue.js components such as event filters, date pickers and performance calendars</li>
+              <li>Integrate Spektrix and Tessitura TNEW ticketing, and set up Algolia and Typesense search for What’s On listings</li>
+              <li>Manage builds with Webpack and Gulp, deploy through CI/CD to Servd, and optimise performance during big ticket on-sales</li>
+              <li>Use Claude Code for AI-assisted development, and have created custom Claude skills</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="job__meta"><strong>Dsquared</strong>Stamford<br>Jun 2022 – Dec 2024</div>
+          <div>
+            <h3 class="job__role">Web Developer</h3>
+            <ul>
+              <li>Built a responsive property search interface for estate agents, contributing to a 34% increase in website traffic</li>
+              <li>Designed and developed an accessible WordPress website for an autism support organisation</li>
+              <li>Developed a film website that fetches and displays movie data from a REST API</li>
+              <li>Built reusable front-end components with Vue.js and React, and responsive layouts with Tailwind CSS</li>
+              <li>Used Git and CI/CD pipelines for version control, automated builds and deployments</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="wrap">
+      <h2 class="section__title">Skills</h2>
+      <div class="skills">
+        <div><h3>Front end</h3><ul><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">SCSS (Sass)</li><li class="chip">BEM</li><li class="chip">JavaScript</li><li class="chip">Vue.js</li><li class="chip">React</li><li class="chip">Tailwind CSS</li><li class="chip">Accessibility (WCAG)</li></ul></div>
+        <div><h3>CMS and back end</h3><ul><li class="chip">Craft CMS</li><li class="chip">Twig</li><li class="chip">WordPress</li><li class="chip">PHP</li><li class="chip">REST APIs</li></ul></div>
+        <div><h3>Ticketing and search</h3><ul><li class="chip">Spektrix</li><li class="chip">Tessitura TNEW</li><li class="chip">Algolia</li><li class="chip">Typesense</li></ul></div>
+        <div><h3>Build and tools</h3><ul><li class="chip">Git</li><li class="chip">CI/CD</li><li class="chip">Webpack</li><li class="chip">Gulp</li><li class="chip">Servd</li><li class="chip">Claude Code</li><li class="chip">Figma</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section__title">How this page is built</h2>
+      <p class="section__lede">Hand-written SCSS, split into partials and compiled with Dart Sass, with design tokens for light and dark themes. Each demo is a small Vue 3 app using the Composition API.</p>
+      <details class="source">
+        <summary class="source__summary">View the site’s SCSS and app setup</summary>
+        <div data-source="site"></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="wrap contact__grid">
+      <div>
+        <h2 class="section__title contact__title">Let’s talk about your next website.</h2>
+        <p class="section__lede">I’m looking for a front-end or Craft CMS role in the UK. The quickest way to reach me is by email.</p>
+      </div>
+      <div class="contact__links">
+        <a href="mailto:abishekmsk7@gmail.com">abishekmsk7@gmail.com</a>
+        <a href="https://www.linkedin.com/in/abishek-meenatchisundaram-812330139/" target="_blank" rel="noopener">LinkedIn profile</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">Abishek Meenatchisundaram, Front End Developer, Leicester</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.4.38/dist/vue.global.prod.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" data-manual></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-scss.min.js"></script>
+<script src="js/SeatMap.js"></script>
+<script src="js/WhatsOn.js"></script>
+<script src="js/SourceViewer.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
